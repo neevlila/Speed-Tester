@@ -36,6 +36,7 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7
 .settings{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
 .sg{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--muted)}
 .sg select{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:8px;padding:.3rem .5rem;color:#e2e8f0;font-size:.82rem}
+.sg select option{background:#1a2035;color:#e2e8f0;}
 /* Button */
 .btn{margin-top:1.4rem;background:linear-gradient(135deg,#00d4ff,#7c3aed);color:#fff;border:none;padding:.9rem 2.8rem;font-size:1rem;font-weight:700;border-radius:50px;cursor:pointer;transition:all .3s;letter-spacing:.04em}
 .btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,.4)}
