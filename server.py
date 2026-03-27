@@ -48,7 +48,7 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7
 .step.done{border-color:var(--green)}
 .s-icon{font-size:1.8rem;margin-bottom:.5rem}
 .s-title{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.09em;margin-bottom:.4rem}
-.s-val{font-size:1.4rem;font-weight:700}
+.s-val{font-size:1.4rem;font-weight:700;color:#e2e8f0}
 .s-unit{font-size:.78rem;color:var(--muted)}
 .ptrack{height:4px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:.8rem;overflow:hidden}
 .pfill{height:100%;width:0%;border-radius:2px;background:linear-gradient(90deg,#00d4ff,#7c3aed);transition:width .25s}
@@ -84,7 +84,6 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7
 <div class="c">
   <h1>🌐 Network Speed Test</h1>
   <p class="sub">Real-time measurement from your browser to this server</p>
-  <div class="info-bar">Server: <span id="shost"></span> &nbsp;|&nbsp; All tests run directly in your browser — measures YOUR actual internet speed</div>
 
   <div class="gauge-card">
     <div class="g-wrap">
@@ -109,8 +108,8 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7
 
   <div class="steps">
     <div class="step" id="sp-ping"><div class="s-icon">📡</div><div class="s-title">Latency</div><div class="s-val" id="sv-ping">— <span class="s-unit">ms</span></div><div class="ptrack"><div class="pfill" id="pf-ping"></div></div></div>
-    <div class="step" id="sp-upload"><div class="s-icon">📤</div><div class="s-title">Upload</div><div class="s-val" id="sv-upload">— <span class="s-unit">Mbps</span></div><div class="ptrack"><div class="pfill" id="pf-upload"></div></div></div>
     <div class="step" id="sp-download"><div class="s-icon">📥</div><div class="s-title">Download</div><div class="s-val" id="sv-download">— <span class="s-unit">Mbps</span></div><div class="ptrack"><div class="pfill" id="pf-download"></div></div></div>
+    <div class="step" id="sp-upload"><div class="s-icon">📤</div><div class="s-title">Upload</div><div class="s-val" id="sv-upload">— <span class="s-unit">Mbps</span></div><div class="ptrack"><div class="pfill" id="pf-upload"></div></div></div>
   </div>
 
   <div class="results" id="results">
@@ -138,15 +137,11 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7
     </div>
     <div id="alerts"></div>
   </div>
-
-  <div class="footer">Real Computer Networks Mini Project &nbsp;|&nbsp; FastAPI + Vanilla JS &nbsp;|&nbsp; <span style="color:var(--primary)" id="fhost"></span></div>
 </div>
 
 <script>
 const B=window.location.origin;
-const C=2*Math.PI*90; // 565.49
-document.getElementById('shost').textContent=window.location.host;
-document.getElementById('fhost').textContent=window.location.host;
+const C=2*Math.PI*90;
 
 function gauge(mbps){
   const p=Math.min(mbps/1000,1);
@@ -266,8 +261,8 @@ async function run(){
   });
   try{
     const pr=await pingTest(np);
-    const up=await uploadTest(us);
     const dn=await downloadTest(ds);
+    const up=await uploadTest(us);
     gauge(dn); gl('Test Complete ✓'); st('✅ All tests complete!');
     document.getElementById('r-dl').textContent=dn.toFixed(2);
     document.getElementById('r-ul').textContent=up.toFixed(2);
